@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthStore } from '../../store/authStore';
 import { useAdminStore } from '../../store/adminStore';
-import { BookOpen, Calendar, FileText, Bell } from 'lucide-react';
+import { BookOpen, Calendar, FileText, Bell, ArrowUpRight, Clock3, MapPin } from 'lucide-react';
 
 const StudentDashboard: React.FC = () => {
   const { user } = useAuthStore();
@@ -11,16 +11,18 @@ const StudentDashboard: React.FC = () => {
   const department = departments.find(d => d.name === user?.department);
 
   return (
-    <div className="space-y-6">
-      {/* Welcome Banner */}
-      <div className="bg-[#002147] rounded-lg shadow-lg p-6 text-white">
-        <h2 className="text-2xl font-bold mb-2">Welcome back, {user?.name}!</h2>
-        <p className="text-gray-300">Here's what's happening with your studies today.</p>
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between gap-4">
+        <div><p className="text-sm font-medium text-[#b08312]">Tuesday, October 22, 2024</p><h2 className="mt-1 text-3xl font-bold tracking-tight text-slate-900">Good morning, {user?.name?.split(' ')[0]}.</h2><p className="mt-2 text-slate-500">Here&apos;s your academic overview for today.</p></div>
+        <div className="hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 text-right shadow-sm sm:block"><p className="text-xs text-slate-500">Current semester</p><p className="font-semibold text-slate-900">Fall 2024</p></div>
+      </div>
+      <div className="rounded-3xl bg-[#071a33] p-6 text-white shadow-xl shadow-slate-300/30 sm:p-8">
+        <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><span className="inline-flex rounded-full bg-[#d7a928]/15 px-3 py-1 text-xs font-semibold text-[#f5d97b]">Student dashboard</span><h3 className="mt-4 max-w-xl text-2xl font-bold tracking-tight sm:text-3xl">Keep moving toward your degree.</h3><p className="mt-2 max-w-lg text-sm leading-6 text-slate-300">Your courses, academic records, and campus updates are all in one place.</p></div><button className="inline-flex items-center gap-2 self-start rounded-xl bg-[#d7a928] px-4 py-3 text-sm font-semibold text-[#071a33] transition hover:bg-[#edc34e]">View academic record <ArrowUpRight size={16} /></button></div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {/* Academic Info Card */}
-        <div className="bg-white rounded-lg shadow p-6 md:col-span-2">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:col-span-2">
           <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
             <BookOpen className="w-5 h-5 mr-2 text-[#C41E3A]" />
             Current Program
@@ -50,7 +52,7 @@ const StudentDashboard: React.FC = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Quick Links</h3>
           <div className="space-y-3">
             <button className="w-full flex items-center justify-between p-3 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
@@ -70,7 +72,7 @@ const StudentDashboard: React.FC = () => {
       </div>
 
       {/* Recent Announcements */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
           <Bell className="w-5 h-5 mr-2 text-[#FFD700]" />
           Recent Announcements
